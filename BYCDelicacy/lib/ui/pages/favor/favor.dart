@@ -1,3 +1,4 @@
+import 'package:BYCDelicacy/ui/pages/favor/favor_content.dart';
 import 'package:flutter/material.dart';
 
 class BYCFavorScreen extends StatelessWidget {
@@ -8,7 +9,7 @@ class BYCFavorScreen extends StatelessWidget {
         title: Text("我的收藏"),
       ),
       body: Center(
-        child: Text("我的收藏"),
+        child: BYCFavorContent(),
       ),
     );
   }

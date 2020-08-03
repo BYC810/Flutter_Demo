@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
 
 main() => runApp(MyApp());
 
@@ -18,110 +19,34 @@ class BYCHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("基础的1"),
       ),
-      body: _BYCHomeContentState(),
-      floatingActionButton: FloatingActionButton(
-      onPressed: () => print(FloatingActionButton),
-      child: Icon(Icons.add),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      body: _BYCHomeContent(),
     );
   }
 }
 
-class _BYCHomeContentState extends StatefulWidget {
+class _BYCHomeContent extends StatefulWidget {
   @override
-  __BYCHomeContentStateState createState() => __BYCHomeContentStateState();
+  _BYCHomeContentState createState() => _BYCHomeContentState();
 }
 
-class __BYCHomeContentStateState extends State<_BYCHomeContentState> {
+class _BYCHomeContentState extends State<_BYCHomeContent> {
+
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        RaisedButton(onPressed: () => print("你好啊哈哈"),
-        textColor: Colors.white,
-        color: Colors.purple,
-        child: Text("RaisedButton"),
-        ),
-        FlatButton(onPressed: () => print("你好啊哈哈"),
-        child: Text("FlatButton"),
-        color: Colors.orange,
-        ),
-        OutlineButton(onPressed: () => print("OutlineButton"),
-        child:Text("OutlineButton"),
-        ),
-        FlatButton(onPressed: () => print("z自定义Button"),
-          child: Row(
-            children: <Widget>[
-              Icon(Icons.favorite,color: Colors.red,),
-              Text("喜欢作者"),
-            ],
-          ),
-          color: Colors.amberAccent,
-        ),
-      ],
-    );
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    //发送网络请求
+    final dio = Dio();
+    dio.get("https://httpbin.org/get").then((value) {
+      print("get-$value");
+    });
+    dio.post("https://httpbin.org/post").then((value) {
+      print("post-$value");
+    });
   }
-}
-
-class TextRichDemo extends StatelessWidget {
-  const TextRichDemo({
-    Key key,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Text.rich(
-      TextSpan(
-        children: [
-          TextSpan(
-              text: "嘎嘎嘎过",
-              style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.red
-              )
-          ),
-          TextSpan(
-              text: "嘎嘎\\n嘎过",
-              style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.green
-              )
-          ),
-          WidgetSpan(
-            child: Icon(Icons.star,color: Colors.red,)),
-          TextSpan(
-              text: "嘎嘎嘎过",
-              style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.blue
-              )
-          )
-        ]
-      )
-    );
+    return Text("123457");
   }
 }
-
-class TextDemo extends StatelessWidget {
-  const TextDemo({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Text("TestsT\nestsTestsTe\\nstsTestsTestsTestsTestsTestsTestsTestsTestsTestsTestsTestsTestsTestsTestsTestsTestsTests",
-    textAlign: TextAlign.left,
-    maxLines: 2,
-    overflow: TextOverflow.ellipsis,
-    textScaleFactor: 1.5,
-    style: TextStyle(
-      fontSize: 30,
-      color: Colors.red,
-      fontWeight: FontWeight.bold
-    ),);
-  }
-}
-
-
-

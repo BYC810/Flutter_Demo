@@ -31,10 +31,10 @@ class BYCHomeContent extends StatefulWidget {
   final String message;
   BYCHomeContent(this.message);
   @override
-  _BYCHomeContentState createState() => _BYCHomeContentState();
+  _BYCHomeContent createState() => _BYCHomeContent();
 }
 
-class _BYCHomeContentState extends State<BYCHomeContent> {
+class _BYCHomeContent extends State<BYCHomeContent> {
   int _counter = 0;
   @override
   Widget build(BuildContext context) {
